@@ -10,18 +10,18 @@ COPY LogMonitor.exe  C:/LogMonitor
 COPY LogMonitorConfig.json C:/LogMonitor
 
 # Executed as cmd /S /C echo default
-RUN echo default
+RUN echo 1-default
 
 # Executed as cmd /S /C powershell -command Write-Host default
-RUN powershell -command Write-Host default
+RUN powershell -command Write-Host 2-default
 
 # Executed as powershell -command Write-Host hello
 SHELL ["powershell", "-command"]
-RUN Write-Host hello
+RUN Write-Host 3-hello
 
 # Executed as cmd /S /C echo hello
 SHELL ["cmd", "/S", "/C"]
-RUN echo hello
+RUN echo 4-hello
 
 # C:\LogMonitor\LogMonitor.exe COMMAND Specifies the name of the executable to be run
 SHELL ["C:\\LogMonitor\\LogMonitor.exe", "powershell.exe"]
