@@ -40,7 +40,7 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build & push Docker image
         with:
-          image: pichuang/sample-aspnet-container
+          image: sample-aspnet-container
           tags: v1, latest
           registry: ${{ env.REGISTRY }}
           dockerfile: Dockerfile
