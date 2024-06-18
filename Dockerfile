@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8.1-windowsservercore-ltsc2022
 ARG source
 
 WORKDIR /inetpub/wwwroot
-COPY ${source:-obj/Docker/publish} .
+# COPY ${source:-obj/Docker/publish} .
 WORKDIR /LogMonitor
 COPY LogMonitor.exe  C:/LogMonitor
 COPY LogMonitorConfig.json C:/LogMonitor
