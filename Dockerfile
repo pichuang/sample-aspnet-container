@@ -9,21 +9,11 @@ WORKDIR /LogMonitor
 COPY LogMonitor.exe  C:/LogMonitor
 COPY LogMonitorConfig.json C:/LogMonitor
 
-# Executed as cmd /S /C echo default
-RUN echo 1-default
-
-# Executed as cmd /S /C powershell -command Write-Host default
-RUN powershell -command Write-Host 2-default
-
-# Executed as powershell -command Write-Host hello
-SHELL ["powershell", "-command"]
-RUN Write-Host 3-hello
-
-# Executed as cmd /S /C echo hello
-SHELL ["cmd", "/S", "/C"]
-RUN echo 4-hello
+# https://emmer.dev/blog/docker-shell-vs.-exec-form/
+# In general, use the shell form for RUN, and the exec form for everything else.
 
 # C:\LogMonitor\LogMonitor.exe COMMAND Specifies the name of the executable to be run
-SHELL ["C:\\LogMonitor\\LogMonitor.exe", "powershell.exe"]
+# SHELL ["C:\\LogMonitor\\LogMonitor.exe", "powershell.exe"]
+RUN C:\\LogMonitor\\LogMonitor.exe powershell.exe
 
-ENTRYPOINT Start-Service WMSVC; & C:\\ServiceMonitor.exe w3svc;
+ENTRYPOINT ["C:\\ServiceMonitor.exe", "w3svc"]
